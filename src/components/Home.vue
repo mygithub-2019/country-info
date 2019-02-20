@@ -3,7 +3,7 @@
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <span class="nav-link" href="#">Country and Other Area Info</span>
+            <span class="nav-link" href="#">Country and Other Info</span>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" @click="viewType('list')">List</a>
