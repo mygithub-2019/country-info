@@ -20,14 +20,18 @@
                     <img :src="country.flag" :alt="country.name" :title="country.name">
                     <!-- <h6 class="card-title">{{ country.name }}</h6> -->
                     <p class="card-title">
-                        <strong>{{ country.name }}<small>({{ country.alpha3Code}})</small></strong>
+                        <strong>{{ country.name }} <sup>({{ country.alpha3Code}})</sup></strong>
+                        <sub>Region- {{ country.region}}</sub>
                     </p>
                 </div>
                 <div class="card-body">
                     
-                    <span>Capital- {{ country.capital}}</span>
-                    <span>Region- {{ country.region}}</span>
-                    <p>Sub Region- {{ country.subregion }}</p> 
+                    <p><strong>Capital</strong>- {{ country.capital}}</p>
+                    <!-- <p>Region- {{ country.region}}</p> -->
+                    <p><strong>Sub Region</strong>- {{ country.subregion }}</p> 
+                    <p><strong>Currency</strong>- {{country.currencies[0].name}}
+                                <sup>( {{country.currencies[0].code}}-{{country.currencies[0].symbol}} )</sup>
+                    </p>
                     <a href="" data-toggle="modal" data-target="#myModal">more...</a> 
                 </div> 
                 <div class="card-footer">
