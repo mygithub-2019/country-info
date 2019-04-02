@@ -88,7 +88,7 @@ export default {
           }
       })
       this.countries = _c
-      console.log(_c)
+      //console.log(_c)
     },
     viewType(type){
       if(type == 'list'){
@@ -109,7 +109,7 @@ export default {
       .then(response => {
           this.countries = response.data
           this.allCountries = response.data
-          console.log('Response: ', response)
+          //console.log('Response: ', response)
       })
       .catch(error => {
           console.log(error)
