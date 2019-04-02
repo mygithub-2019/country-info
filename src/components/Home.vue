@@ -91,7 +91,6 @@ export default {
       console.log(_c)
     },
     viewType(type){
-      debugger
       if(type == 'list'){
         this.listViewType = true
         return

@@ -32,7 +32,9 @@
                     <p><strong>Currency</strong>- {{country.currencies[0].name}}
                                 <sup>( {{country.currencies[0].code}}-{{country.currencies[0].symbol}} )</sup>
                     </p>
-                    <a href="" data-toggle="modal" data-target="#myModal">more...</a> 
+                    <a href="" data-toggle="modal" 
+                        data-target="#myModal"
+                        @click="showMore(country)">more...</a> 
                 </div> 
                 <div class="card-footer">
                     <a v-bind:href="'https://en.wikipedia.org/wiki/'+country.name"
@@ -44,18 +46,7 @@
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-                        <div class="modal-body">
-                            <app-country-detail></app-country-detail>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
+                    <app-country-detail :propCuntryData=countryData></app-country-detail>
                 </div>
             </div>
             
@@ -66,11 +57,21 @@
 import CountryDetail from '../components/CountryDetail.vue'
 
 export default {
+    data(){
+        return{
+            countryData : ''
+        }
+    },
     props: ([
         'COUNTRIES'
     ]),
     components: {
         appCountryDetail: CountryDetail
+    },
+    methods: {
+        showMore(country){
+            this.countryData = country
+        }
     }
 }
 </script>

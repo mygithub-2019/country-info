@@ -1,27 +1,76 @@
 <template>
-        <div class="container">
-  <h1>Grid Example</h1>
-  <p>This example demonstrates a 50%/50% split on small, medium, large and xlarge devices. On extra small devices, it will stack (100% width).</p>      
-  <p>Resize the browser window to see the effect.</p> 
-  <div class="container">     
-    <div class="row">
-      <div class="col-sm-6 bg-success">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <img :src='propCuntryData.flag'/> &nbsp;&nbsp;
+        <h4 class="modal-title">{{ propCuntryData.name }}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      <div class="col-sm-6 bg-warning">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.    
+      <div class="modal-body">
+        <table>
+          <tr>
+            <td><strong class="text-label-float"> Name:</strong></td>
+            <td class="text-content-float"> {{ propCuntryData.nativeName}}</td>
+          </tr>
+          <tr>
+            <td><strong class="text-label-float">Area:</strong></td>
+            <td class="text-content-float"> {{ propCuntryData.area}}</td>
+          </tr>
+          <tr>
+            <td><strong class="text-label-float">Capital:</strong></td>
+            <td class="text-content-float"> {{ propCuntryData.capital}}</td>
+          </tr>
+          <tr>
+            <td><strong class="text-label-float">Demonym:</strong></td>
+            <td class="text-content-float"> {{ propCuntryData.demonym}}</td>
+          </tr>
+          <tr>
+            <td><strong class="text-label-float">Population:</strong></td>
+            <td class="text-content-float"> {{ propCuntryData.population}}</td>
+          </tr>
+          <tr>
+            <td><strong class="text-label-float">Region:</strong></td>
+            <td class="text-content-float"> {{ propCuntryData.region}}</td>
+          </tr>
+          <tr>
+            <td><strong class="text-label-float">Subregion:</strong></td>
+            <td class="text-content-float"> {{ propCuntryData.subregion}}</td>
+          </tr>
+          <tr>
+            <td><strong class="text-label-float">Timezones:</strong></td>
+            <td class="text-content-float"> {{ propCuntryData.timezones}}</td>
+          </tr>
+        </table>
       </div>
-    </div>
-  </div>
-
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
     </div>
 </template>
+<script>
+export default {
+  props:[
+    'propCuntryData'
+  ]
+}
+</script>
+
 <style lang="scss" scoped>
 .content {
     width: 50%;
     height: 20%;
     border: 1px solid red;
+}
+img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+.text-label-float{
+  float: right;
+}
+.text-content-float{
+  float: left;
 }
 </style>
 
