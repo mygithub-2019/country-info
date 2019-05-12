@@ -3,13 +3,22 @@
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <span class="nav-link" href="#">Country and Other Info</span>
+            <span class="nav-link" href="#">Country Info</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" @click="viewType('list')">List</a>
+            <a class="nav-link" href="#" @click="viewType('list')"  title="List/Table View">
+              <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" @click="viewType('grid')">Grid</a>
+            <a class="nav-link" href="#" @click="viewType('grid')" title="Grid View">
+              <i class="fa fa-th" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" @click="viewType('map')" title="Map View">
+              <i class="fa fa-globe" aria-hidden="true"></i>
+            </a>
           </li>
           <li>
             <!-- <span>{{ new Date().toLocaleString()}}</span> -->
@@ -33,8 +42,11 @@
       <div v-if='listViewType'>
         <app-tabl-table-view :COUNTRIES = 'countries'/>
       </div>
-      <div v-else>
+      <div v-if='gridViewType'>
         <app-grid-view :COUNTRIES = 'countries'/>
+      </div>
+      <div v-if="mapViewType">
+        <app-map-view></app-map-view>
       </div>
       <div v-if='countries.length <= countriesLength'>
         <p>{{ noCountryFound }}</p>
@@ -50,6 +62,7 @@
 import axios from 'axios'
 import TableView from '../views/TableView.vue'
 import GridView from '../views/GridView.vue'
+import MapView from '../views/MapView.vue'
 import CountryDetail from './CountryDetail.vue'
 
 
@@ -57,6 +70,8 @@ export default {
   data(){
     return {
       listViewType: true,
+      gridViewType: false,
+      mapViewType: false,
       countries: [],
       searchClient: '',
       allCountries: [],
@@ -73,6 +88,7 @@ export default {
   components: {
     appTablTableView: TableView,
     appGridView: GridView,
+    appMapView: MapView,
     appCountryDetail: CountryDetail
   },
   methods: {
@@ -91,10 +107,20 @@ export default {
       //console.log(_c)
     },
     viewType(type){
+      debugger
       if(type == 'list'){
         this.listViewType = true
+        this.mapViewType = false
+        this.gridViewType = false
+        return
+      } else if(type == 'grid') {
+        this.gridViewType = true
+        this.listViewType = false
+        this.mapViewType = false
         return
       }
+      this.mapViewType = true
+      this.gridViewType = false
       this.listViewType = false
     },
     getTime(){
