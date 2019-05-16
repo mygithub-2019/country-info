@@ -6,19 +6,27 @@
             <span class="nav-link" href="#">Country Info</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" @click="viewType('list')"  title="List/Table View">
-              <i class="fa fa-list" aria-hidden="true"></i>
+            <a class="nav-link" href="#" @click="viewType('list')"  title="Table View">
+              <i class="fa fa-list" aria-hidden="true"></i> Table View
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" @click="viewType('grid')" title="Grid View">
-              <i class="fa fa-th" aria-hidden="true"></i>
+              <i class="fa fa-th" aria-hidden="true"></i> Grid View
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" @click="viewType('map')" title="Map View">
-              <i class="fa fa-globe" aria-hidden="true"></i>
+              <i class="fa fa-globe" aria-hidden="true"></i> Map View
             </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" @click="viewType('news')" title="News">
+              <i class="fa fa-newspaper-o" aria-hidden="true"></i> News
+            </a>
+          </li>
+          <li>
+            <span class="nav-link">Total Countries: {{ this.countries.length }}</span>
           </li>
           <li>
             <!-- <span>{{ new Date().toLocaleString()}}</span> -->
@@ -27,9 +35,6 @@
               type="text"
               v-model="searchClient"
               v-on:input="filteredClients"/>
-          </li>
-          <li>
-            <span class="nav-link">Total Countries: {{ this.countries.length }}</span>
           </li>
         </ul>
       </nav>
@@ -48,6 +53,9 @@
       <div v-if="mapViewType">
         <app-map-view></app-map-view>
       </div>
+      <div v-if="newsPage">
+        <app-news-page :COUNTRIES = 'countries'></app-news-page>
+      </div>
       <div v-if='countries.length <= countriesLength'>
         <p>{{ noCountryFound }}</p>
       </div>
@@ -63,6 +71,7 @@ import axios from 'axios'
 import TableView from '../views/TableView.vue'
 import GridView from '../views/GridView.vue'
 import MapView from '../views/MapView.vue'
+import NewsPage from '../views/NewsPage.vue'
 import CountryDetail from './CountryDetail.vue'
 
 
@@ -72,6 +81,7 @@ export default {
       listViewType: true,
       gridViewType: false,
       mapViewType: false,
+      newsPage: false,
       countries: [],
       searchClient: '',
       allCountries: [],
@@ -89,6 +99,7 @@ export default {
     appTablTableView: TableView,
     appGridView: GridView,
     appMapView: MapView,
+    appNewsPage: NewsPage,
     appCountryDetail: CountryDetail
   },
   methods: {
@@ -107,21 +118,32 @@ export default {
       //console.log(_c)
     },
     viewType(type){
-      debugger
       if(type == 'list'){
         this.listViewType = true
         this.mapViewType = false
         this.gridViewType = false
+        this.newsPage = false
         return
       } else if(type == 'grid') {
         this.gridViewType = true
         this.listViewType = false
         this.mapViewType = false
+        this.newsPage = false
         return
-      }
+      } else if(type == 'map') {
       this.mapViewType = true
       this.gridViewType = false
       this.listViewType = false
+      this.newsPage = false
+      } else {
+        this.newsPage = true
+        this.mapViewType = false
+        this.gridViewType = false
+        this.listViewType = false
+      }
+    },
+    resetView(loadView){
+
     },
     getTime(){
       setInterval({

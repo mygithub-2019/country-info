@@ -20,14 +20,16 @@ export default {
           ['Country', 'Popularity'],
           ['China', 1377422166],
           ['India', 1295210000],
-          ['United States of America', 323947000],
+          ['USA', 323947000],
           ['Indonesia', 258705000],
           ['Brazil', 206135893],
           ['Pakistan', 194125062],
           ['Nigeria', 186988000],
           ['Bangladesh', 161006790],
-          ['Russian Fedaration', 146599183],
-          ['Japan', 126960000]
+          ['Russian', 146599183],
+          ['Australia', 24117360],
+          ['Canada', 36155487],
+          ['Iran', 79369900]
         ]);
 
         var options = {};
