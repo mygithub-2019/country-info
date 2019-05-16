@@ -6,9 +6,10 @@
                 <div class="list-group">
                     <div class="list-group-item"
                         v-for="(country, index) in COUNTRIES" 
-                        v-bind:key = 'index'>
+                        v-bind:key = 'index'   
+                        @click="selectedCountry(index)">
                             <div class='row' @click="loadNews(country)">
-                                <div class='col-xs-4 logo'>
+                                <div class='col-xs-4 logo' :id='index'>
                                     <div class='data'>
                                         {{country.alpha2Code}}
                                     </div>
@@ -22,16 +23,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8" style="height: 500px; overflow: auto;">
                 <app-Loader v-if="isLoading"></app-Loader>
                 <div v-if="noNews && !isLoading">Sorry, we didn't find any latest news...!</div>
                 <div v-if="!noNews">
                     <div 
                         v-for="(article, index) in articles"
                         v-bind:key = 'index'>
-                        <h4>{{article.title}}</h4>
+                        <!-- <h4>{{article.title}}</h4>
                         <h6>{{article.description}}</h6>
-                        <p>{{article.content}}</p>
+                        <p>{{article.content}}</p> -->
+                        <app-news-detail-page :newsInfo=article></app-news-detail-page>
                     </div>
                 </div>
             </div>
@@ -42,6 +44,7 @@
 <script>
 import axios from 'axios'
 import Loader from '../components/Loader'
+import NewsDetailPage from './NewsDetailPage.vue'
 
 export default {
     data(){
@@ -70,13 +73,25 @@ export default {
                 .catch(error => {
                     console.log(error)
                 })
+            },
+            selectedCountry(index) {
+                this.resetSelectedCountry()
+                document.getElementById(index).style.backgroundColor = "#60a9e8";
+                document.getElementById(index).style.color = "black";
+            },
+            resetSelectedCountry() {
+                for(let i=0; i<this.$props.COUNTRIES.length; i++){
+                    document.getElementById(i).style.backgroundColor = "";
+                    document.getElementById(i).style.color = "";
+                }
             }
     },
     props: ([
         'COUNTRIES'
     ]),
     components: {
-        appLoader: Loader
+        appLoader: Loader,
+        appNewsDetailPage: NewsDetailPage
     }
 }
 </script>
@@ -88,7 +103,7 @@ export default {
     border: 1px solid #ccc7c7;
     color: #716c6c;
     border-radius: 50%;
-    
+    box-shadow: 2px 1px 4px 0px;
 }
 .data {
     margin-top: 7px;
