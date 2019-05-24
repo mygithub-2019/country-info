@@ -76,13 +76,17 @@ export default {
             },
             selectedCountry(index) {
                 this.resetSelectedCountry()
-                document.getElementById(index).style.backgroundColor = "#60a9e8";
-                document.getElementById(index).style.color = "black";
+                const _element = document.getElementById(index)
+                _element.style.backgroundColor = "#60a9e8";
+                _element.style.color = "black";
+                document.getElementsByClassName(_element.parentElement.parentElement.className)[index].style.borderLeft = "5px solid #107aec96";
             },
             resetSelectedCountry() {
                 for(let i=0; i<this.$props.COUNTRIES.length; i++){
-                    document.getElementById(i).style.backgroundColor = "";
-                    document.getElementById(i).style.color = "";
+                    const _elementRef = document.getElementById(i)
+                    _elementRef.style.backgroundColor = "";
+                    _elementRef.style.color = "";
+                    document.getElementsByClassName(_elementRef.parentElement.parentElement.className)[i].style.borderLeft = "";
                 }
             }
     },
@@ -110,7 +114,7 @@ export default {
 }
 .text-overflow {
     white-space: nowrap;
-    width: 230px;
+    width: 210px;
     overflow: hidden;
     text-overflow: ellipsis;
 }

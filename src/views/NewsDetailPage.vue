@@ -10,7 +10,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <img :src="newsInfo.urlToImage" alt="Image not provided" height="150" width="300">
+                        <img :src="newsInfo.urlToImage" class='news-image' 
+                        height = "150" width = "300" alt="Image not provided">
                         <p><i>{{newsInfo.description}}</i></p>
                     </div>
                     <div class="col-md-6">
@@ -50,6 +51,10 @@ export default {
 <style lang="scss" scoped>
 .card-footer, .card-header {
     color: gray;
+}
+.news-image{
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px 1px;
 }
 </style>
 

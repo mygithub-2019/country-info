@@ -3,7 +3,7 @@
         <div class="loading-bar"></div>&nbsp;
         <div class="loading-bar"></div>&nbsp;
         <div class="loading-bar"></div>&nbsp;
-        <div class="loading-bar"></div>
+        <div class="loading-bar"></div> 
     </div>
 </template>
 <script>
